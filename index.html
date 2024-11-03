@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Countdown Timer</title>
+    <title>Sleek Countdown Timer</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
@@ -13,32 +13,37 @@
     class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
 
     <!-- Countdown Timer Container -->
-    <div id="countdown" class="text-center p-6 bg-gray-800 shadow-lg rounded-lg">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Countdown to Reforma</h1>
+    <div id="countdown" class="text-center p-6">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-light mb-8 tracking-wide">Countdown to Reforma</h1>
         <div
-            class="flex flex-wrap justify-center gap-8 text-xl sm:text-3xl md:text-4xl font-mono transition-all duration-300">
-            <div id="days" class="flex flex-col items-center p-4 bg-gray-700 rounded-lg shadow-md w-20">
-                <span class="text-4xl sm:text-5xl font-semibold" id="daysValue">0</span>
-                <span class="text-sm uppercase">Days</span>
+            class="flex flex-wrap justify-center gap-6 text-xl sm:text-2xl md:text-3xl font-mono transition-all duration-300">
+            <!-- Countdown Numbers -->
+            <div class="flex flex-col items-center p-4">
+                <span id="daysValue"
+                    class="text-5xl sm:text-6xl md:text-7xl font-thin transition-transform duration-500 transform scale-100">0</span>
+                <span class="text-xs uppercase text-gray-400 tracking-wider mt-2">Days</span>
             </div>
-            <div id="hours" class="flex flex-col items-center p-4 bg-gray-700 rounded-lg shadow-md w-20">
-                <span class="text-4xl sm:text-5xl font-semibold" id="hoursValue">0</span>
-                <span class="text-sm uppercase">Hours</span>
+            <div class="flex flex-col items-center p-4">
+                <span id="hoursValue"
+                    class="text-5xl sm:text-6xl md:text-7xl font-thin transition-transform duration-500 transform scale-100">0</span>
+                <span class="text-xs uppercase text-gray-400 tracking-wider mt-2">Hours</span>
             </div>
-            <div id="minutes" class="flex flex-col items-center p-4 bg-gray-700 rounded-lg shadow-md w-20">
-                <span class="text-4xl sm:text-5xl font-semibold" id="minutesValue">0</span>
-                <span class="text-sm uppercase">Minutes</span>
+            <div class="flex flex-col items-center p-4">
+                <span id="minutesValue"
+                    class="text-5xl sm:text-6xl md:text-7xl font-thin transition-transform duration-500 transform scale-100">0</span>
+                <span class="text-xs uppercase text-gray-400 tracking-wider mt-2">Minutes</span>
             </div>
-            <div id="seconds" class="flex flex-col items-center p-4 bg-gray-700 rounded-lg shadow-md w-20">
-                <span class="text-4xl sm:text-5xl font-semibold" id="secondsValue">0</span>
-                <span class="text-sm uppercase">Seconds</span>
+            <div class="flex flex-col items-center p-4">
+                <span id="secondsValue"
+                    class="text-5xl sm:text-6xl md:text-7xl font-thin transition-transform duration-500 transform scale-100">0</span>
+                <span class="text-xs uppercase text-gray-400 tracking-wider mt-2">Seconds</span>
             </div>
         </div>
     </div>
 
     <!-- Celebration Message -->
     <div id="celebration" class="hidden text-center mt-10">
-        <h2 class="text-6xl md:text-7xl font-extrabold text-yellow-400 animate-pulse">REFORMA!!</h2>
+        <h2 class="text-6xl md:text-7xl font-semibold text-yellow-400 animate-pulse tracking-widest">REFORMA!!</h2>
     </div>
 
     <script>
@@ -57,11 +62,17 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Display the countdown
+                // Display the countdown with subtle scale animation
                 document.getElementById("daysValue").innerText = days;
                 document.getElementById("hoursValue").innerText = hours;
                 document.getElementById("minutesValue").innerText = minutes;
                 document.getElementById("secondsValue").innerText = seconds;
+
+                // Add scale animation to countdown values
+                document.getElementById("daysValue").classList.toggle("scale-105");
+                document.getElementById("hoursValue").classList.toggle("scale-105");
+                document.getElementById("minutesValue").classList.toggle("scale-105");
+                document.getElementById("secondsValue").classList.toggle("scale-105");
             } else {
                 // Clear the interval
                 clearInterval(countdownInterval);
@@ -70,16 +81,15 @@
                 document.getElementById("countdown").classList.add("hidden");
                 document.getElementById("celebration").classList.remove("hidden");
 
-                // Trigger confetti animation
-                const confettiSettings = { particleCount: 100, spread: 70, origin: { y: 0.6 } };
+                // Trigger a subtle, continuous confetti effect
+                const confettiSettings = { particleCount: 80, spread: 60, origin: { y: 0.7 }, colors: ['#FFD700', '#FF8C00', '#FF6347'] };
                 confetti(confettiSettings);
                 setInterval(() => {
                     confetti(confettiSettings);
-                }, 1000); // repeat every second for an ongoing effect
+                }, 1500); // repeat every 1.5 seconds for a continuous subtle effect
             }
         }, 1000);
     </script>
-
 </body>
 
 </html>
